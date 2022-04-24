@@ -1,0 +1,29 @@
+https://play.google.com/store/apps/details?id=com.rubygames.splashyjump&hl=en&gl=US
+
+Slime road oyununu indirip denemenizi tavsiye ederiz.
+
+Gerekenler;
+
+1. Topun Slime Road oyununda olduğu gibi, istikrarlı biçimde zıplaması ve sağa sola hareket etmesi.
+2. Topun Zıplama ritminin, yüksekliğinin ayrı ayrı değiştirilebilmesi.
+3. Çemberlerin random biçimde sonsuz dizilmesi.
+4. Topun belirlenmiş hareketine uygunsuz çemberin bulunmaması.
+5. Elmasların toplanması ve toplanmış sayının ui'da gösterilmesi.
+6. Top çembere değdiğinde basit bir oyunu kaybetme ekranı gösterilmesi ve burada restart butonunun bulunması. Butona basıldığında tekrar başlamamız.
+7. Oyunun ilk açılışında oyunun derhal başlamaması, play tuşuna basıldığında oyuna başlamamız.
+8. Restart tuşuna basıldığında Play tuşunun yüklenen levelde tekrar gösterilmemesi.
+9. Oyunun akıcı olması, takılmaların bulunmaması.
+10 URP pipeline'ında yapılması
+
+Olması güzel olacak şeyler;
+
+1. Custom Particle efektleri (örn; top yere değdiğinde, elmasa dokunduğunda, veya çembere çarptığımızda vb)
+2. Custom Shader efektleri (örn; topun vertex displacement animasyonu)
+3. Custom Kamera efektleri (örn; top yere değdiğinde, elmasa dokunduğunda, çembere çarptığında vb)
+4. Kod yapısının düzenli olması
+
+Oyunu bitirdiğinizde, kendi github'ınıza yüklemeniz gerekmekte.
+Eğer private yüklerseniz, LootcopterGithubSubmissions ismindeki kullanıcıya proje için okuma izni vermelisiniz.
+
+Herhangi kod asseti, art asseti veya kendi hazırlamış olduğunuz kütüphanenizi kullanabilirsiniz.
+Teslim ettiğinizde, projenizle alakalı sorularımız olabilir.

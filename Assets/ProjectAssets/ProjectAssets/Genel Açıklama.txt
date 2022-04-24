@@ -1,0 +1,25 @@
+Oyunların açıklamaları ayrı ayrı, SlimeRoad ve SlingDrift olarak mevcuttur.
+
+Oyunları Unity 2020.3 LTS versiyonlarının herhangi birinde yapabilirsiniz.
+2020.3 LTS versiyonları dışında bir Unity versiyonu kullanmamanız rica olunur.
+
+Oyunlarda kullanabileceğiniz ilgili art assetleri gönderilmiştir, bunları proje asset folder'ına sürükleyerek
+kullanmaya başlayabilirsiniz.
+
+İki oyununda gönderildikten 1 hafta içerisinde yapılıp, Github'a yüklenmesi beklenmektedir.
+
+Oyunları Github'a yüklediğinizde, repository sayfalarının linklerini belirterek; 
+proje dosyalarının gönderildiği mail'i yanıtlamanız beklenmekte.
+
+İki oyunu ayrı ayrı yada aynı Unity projesinde yapabilirsiniz.
+
+Lütfen eğerki repository'leriniz private'sa izinleri vermeyi unutmayınız. public ise izin vermenize gerek yoktur.
+
+Oyunları teslim ettiğinizde projenizle alakalı sorularımız olabilir ve sizden ek görüşme istenebilir.
+
+Projeyle alakalı txt dosyalarında bulunan,
+Gerekenler kısmındaki herşeyin yapılmış olmasını beklemekteyiz.
+Olması güzel olacak şeyler kısmıda kesinlikle bizim için önemlidir.
+
+Projedeki bir mekaniğin nasıl yapılacağı, nasıl yapılmasının daha iyi olacağı, ilgili kaynak vb sorulara cevap verilemiyor.
+Bu konuda merak ettiğiniz bir durum olursa, örnek oyunları baz alarak ilerlemeniz rica olunur.
