@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Start : IState
+public class StartState : IState
 {
-    public Start()
+    public static Action OnStart;
+    public StartState()
     {
     }
 
@@ -21,6 +22,7 @@ public class Start : IState
 
     public void OnExit()
     {
+        OnStart?.Invoke();
     }
 
     public void Tick()

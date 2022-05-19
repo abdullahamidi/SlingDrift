@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         connectibleNode = gameObject.GetComponentInChildren<SearchNode>();
         _stateMachine = new StateMachine();
 
-        var start = new Start();
+        var start = new StartState();
         var moveTowards = new MoveTowards(this);
         var connectToNode = new ConnectToNode(this, connectibleNode, slingLine);
         var drift = new Drift(this, connectibleNode, slingLine); //add particles
