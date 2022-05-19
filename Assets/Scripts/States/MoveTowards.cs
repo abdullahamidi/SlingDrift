@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MoveTowards : IState
 {
@@ -17,7 +18,6 @@ public class MoveTowards : IState
 
     public void OnEnter()
     {
-        //RotateTowards();
     }
 
     public void OnExit()

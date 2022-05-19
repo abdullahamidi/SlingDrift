@@ -10,16 +10,20 @@ public class RoadGenerator : MonoBehaviour
     private RoadTile startRoad;
     private RoadTile currentRoad;
     private Stack<RoadTile> roads = new Stack<RoadTile>();
-    private Grid roadTiles = new Grid();
+    private Grid roadGrid = new Grid();
     private Cell currentCell = new Cell(Vector2.zero);
     private float timer = 0f;
     private List<Node> nodes = new List<Node>();
+    private int count = 0;
+    private int deadEndCount = 0;
+    private int removeCount = 3;
     // Start is called before the first frame update
     void Start()
     {
         currentRoad = Instantiate(startRoad);
-        roadTiles.AddCell(currentCell);
-        roadTiles.AddCell(new Cell(currentCell.position + Vector2.down));
+        roadGrid.AddCell(currentCell);
+        roadGrid.AddCell(new Cell(currentCell.position + Vector2.down));
+        roadGrid.AddCell(new Cell(currentCell.position + 2 * Vector2.down));
         roads.Push(currentRoad);
         CreateRoads(100);
         UpdateNodes();
@@ -42,7 +46,8 @@ public class RoadGenerator : MonoBehaviour
         {
             Destroy(roads.Peek().gameObject);
             roads.Pop();
-            roadTiles.cells.RemoveAt(roadTiles.cells.Count - 1);
+            roadGrid.cells.RemoveAt(roadGrid.cells.Count - 1);
+
         }
         currentRoad = roads.Peek();
         roads.Pop();
@@ -52,13 +57,13 @@ public class RoadGenerator : MonoBehaviour
             currentRoad.GetComponentInChildren<Node>(true).gameObject.SetActive(true);
         }
         roads.Push(currentRoad);
-        currentCell = roadTiles.cells.Last();
+        currentCell = roadGrid.cells.Last();
     }
 
     public bool CellAvailable(Vector2 direction)
     {
         Cell cell2Check = new Cell(currentCell.position + direction);
-        bool isAvailable = !roadTiles.cells.Exists(cell => cell.position == cell2Check.position);
+        bool isAvailable = !roadGrid.cells.Exists(cell => cell.position == cell2Check.position);
         return isAvailable;
     }
 
@@ -74,7 +79,7 @@ public class RoadGenerator : MonoBehaviour
                 Node currentNode;
                 currentCell = new Cell(currentCell.position + roadDirection);
                 currentRoad = currentRoad.GenerateRoad();
-                roadTiles.AddCell(currentCell);
+                roadGrid.AddCell(currentCell);
                 roads.Push(currentRoad);
                 prevNode = previousRoad.GetComponentInChildren<Node>();
                 currentNode = currentRoad.GetComponentInChildren<Node>();
@@ -83,7 +88,7 @@ public class RoadGenerator : MonoBehaviour
             }
             else
             {
-                DeleteLastRoads(3);
+                DeleteLastRoads(removeCount);
             }
         }
     }

@@ -63,7 +63,7 @@ public class Drift : IState
         //exit noktasýný geçmeden düzeltme yapmasýn 
         _fixRotationTween?.Kill();
         Vector3 roadRotation = _connectedNode.transform.parent.GetComponent<RoadTile>().GetRoadRotation();
-        _fixRotationTween = _player.transform.DORotateQuaternion(Quaternion.Euler(roadRotation), 0.1f);
+        _fixRotationTween = _player.transform.DORotateQuaternion(Quaternion.Euler(roadRotation), 0.2f);
         //_player.transform.eulerAngles = _connectedNode.transform.parent.GetComponent<RoadTile>().GetRoadRotation();
         if (OnHookReleased != null) OnHookReleased();
         //_player.transform.parent = null;
@@ -73,23 +73,11 @@ public class Drift : IState
     public void Tick()
     {
         Vector3 targetDir = _connectedNode.transform.position - _player.transform.position;
-        Vector3 forward = _player.transform.up;
-        float angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
-        if (angle < 22.0F * moveDir)
-        {
-            Debug.Log("turn left");
-        }
-        else if (angle > 18.0F)
-        {
-            Debug.Log("turn right");
-        }
-        else
-        {
-            Debug.Log("forward");
-        }
-        _player.transform.localRotation = Quaternion.Lerp(_player.transform.localRotation, Quaternion.Euler(Vector3.forward * angle), Time.deltaTime * 20f);
-        //_connectedNode.transform.Rotate(new Vector3(0, 0, _driftSpeed * moveDir * Time.deltaTime));
-        _player.transform.RotateAround(origin, _player.transform.forward * moveDir, _driftSpeed * moveDir * Time.deltaTime); // check again
+        var carRotation = Quaternion.AngleAxis(60 * -moveDir, Vector3.forward);
+        targetDir = carRotation * targetDir;
+
+        _player.transform.up = Vector3.Lerp(_player.transform.up, targetDir, Time.deltaTime * 3);
+        _player.transform.RotateAround(origin, _player.transform.forward * moveDir, 360 * _player.Speed / (2 * Mathf.PI * driftCircleRadius) * Time.deltaTime); // check again
         _slingLine.SetPosition(0, _player.transform.position);
     }
 }
