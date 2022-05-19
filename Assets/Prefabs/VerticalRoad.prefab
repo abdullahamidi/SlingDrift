@@ -71,6 +71,9 @@ GameObject:
   - component: {fileID: 7568206354761478455}
   - component: {fileID: 7568206354761478454}
   - component: {fileID: 7568206354761478448}
+  - component: {fileID: 7323192135268667825}
+  - component: {fileID: 574609161843412453}
+  - component: {fileID: 8039196115759316465}
   m_Layer: 0
   m_Name: VerticalRoad
   m_TagString: Untagged
@@ -164,3 +167,59 @@ MonoBehaviour:
   - {fileID: 2105751248, guid: eda14a7f85fbacc4ba3d6c97085e31f9, type: 3}
   - {fileID: 8797363416913377553, guid: 59abefef7650a414cb22da1c7cf44235, type: 3}
   roadType: 2
+--- !u!68 &7323192135268667825
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568206354761478453}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.45778853, y: 0.63774025}
+  - {x: -0.4532689, y: -0.6478631}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &574609161843412453
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568206354761478453}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.46845335, y: 0.6377402}
+  - {x: 0.4679113, y: -0.6377402}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &8039196115759316465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568206354761478453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ee2343df27f0e458459e9c7257f5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

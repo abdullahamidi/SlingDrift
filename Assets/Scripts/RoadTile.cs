@@ -49,6 +49,11 @@ public class RoadTile : MonoBehaviour
         return direction;
     }
 
+    public Vector3 GetRoadRotation()
+    {
+        return exitPoint.eulerAngles;
+    }
+
     //public RoadTile GenerateRoad(RoadType exceptedRoadType)
     //{
     //    int possibleRoadTypeIndex = Random.Range(0, possibleRoads.Count);
