@@ -428,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7373c4a5cddf6514ca103e1279954f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveNode: {fileID: 0}
 --- !u!1 &757252939
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986486045}
-  - component: {fileID: 986486044}
   - component: {fileID: 986486046}
   m_Layer: 0
   m_Name: GameManager
@@ -696,18 +696,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &986486044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986486043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b503ae53c4020949ad6c8de066579a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &986486045
 Transform:
   m_ObjectHideFlags: 0
@@ -1142,7 +1130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   connectableCircleRadius: 2.5
-  driftSpeed: 90
 --- !u!61 &1260751169
 BoxCollider2D:
   m_ObjectHideFlags: 0

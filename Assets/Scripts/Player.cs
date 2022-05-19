@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         InputManager.OnFingerDown += FingerDown;
         InputManager.OnFingerUp += FingerUp;
-        SearchPlayerInDriftArea.OnPlayerEnterDriftArea += PlayerInDriftArea;
+        PlayerEnterDriftArea.OnPlayerEnterDriftArea += PlayerInDriftArea;
         PlayerExitDriftArea.OnPlayerExitDriftArea += PlayerOutDriftArea;
         ConnectToNode.OnHookAttached += HookAttached;
         Drift.OnHookReleased += HookReleased;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     {
         InputManager.OnFingerDown -= FingerDown;
         InputManager.OnFingerUp -= FingerUp;
-        SearchPlayerInDriftArea.OnPlayerEnterDriftArea -= PlayerInDriftArea;
+        PlayerEnterDriftArea.OnPlayerEnterDriftArea -= PlayerInDriftArea;
         PlayerExitDriftArea.OnPlayerExitDriftArea -= PlayerOutDriftArea;
         ConnectToNode.OnHookAttached -= HookAttached;
         Drift.OnHookReleased -= HookReleased;
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
 
     private void FingerDown()
     {
-        Debug.Log("barnahýmý býraktým");
         isFingerDown = true;
     }
 
@@ -110,7 +109,6 @@ public class Player : MonoBehaviour
 
     private void PlayerOutDriftArea()
     {
-        Debug.Log("çýktým");
         isPlayerInDriftArea = false;
     }
 
