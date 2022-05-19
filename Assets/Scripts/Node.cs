@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    [SerializeField]
-    private float connectableCircleRadius = 3f;
-    [SerializeField]
-    private float moveableCircleRadius = 2f;
-
     private bool _isPassed = false;
 
     public bool IsPassed
@@ -15,8 +10,4 @@ public class Node : MonoBehaviour
         set { _isPassed = value; }
     }
 
-
-    private void Update()
-    {
-    }
 }

@@ -12,7 +12,7 @@ public class ConnectToNode : IState
     private Node _nodeToConnect;
     private LineRenderer _slingLine;
     private Vector3 hookPos;
-    private float hookSpeed = 15f;
+    private float hookSpeed = 30f;
     public ConnectToNode(Player player, SearchNode nodeSearcher, LineRenderer slingLine)
     {
         _player = player;
@@ -26,7 +26,8 @@ public class ConnectToNode : IState
 
     public void OnEnter()
     {
-        _nodeToConnect = _nodeSearcher.GetNode();
+        _nodeToConnect = _nodeSearcher.GetNodeInRange();
+        _nodeSearcher.ActiveNode = _nodeToConnect;
         hookPos = _player.transform.position;
     }
 

@@ -21,18 +21,12 @@ public class InputManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             isGameStarted = true;
             startPanel.SetActive(false);
         }
-        if (OnFingerDown != null)
-        {
-            OnFingerDown();
-        }
+        OnFingerDown?.Invoke();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (OnFingerUp != null)
-        {
-            OnFingerUp();
-        }
+        OnFingerUp?.Invoke();
     }
 
 }

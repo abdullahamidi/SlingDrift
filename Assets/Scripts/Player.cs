@@ -8,29 +8,26 @@ public class Player : MonoBehaviour
     public float Speed;
     [SerializeField]
     private float connectableCircleRadius;
-    [SerializeField]
-    private float driftSpeed;
     private StateMachine _stateMachine;
     private CircleCollider2D detectArea;
-    //private BoxCollider2D driftArea;
     private LineRenderer slingLine;
     private SearchNode connectibleNode;
-    private Rigidbody2D playerRb;
     private bool isFingerDown = false;
     private bool isPlayerInDriftArea = false;
     private bool isCollidedSomewhere = false;
-    private bool pressedReplayButton = false;
     private bool isHookAttached = false;
+    private bool isPosFixed = false;
 
     private void OnEnable()
     {
         InputManager.OnFingerDown += FingerDown;
         InputManager.OnFingerUp += FingerUp;
         SearchPlayerInDriftArea.OnPlayerEnterDriftArea += PlayerInDriftArea;
-        SearchPlayerInDriftArea.OnPlayerExitDriftArea += PlayerOutDriftArea;
+        PlayerExitDriftArea.OnPlayerExitDriftArea += PlayerOutDriftArea;
         ConnectToNode.OnHookAttached += HookAttached;
         Drift.OnHookReleased += HookReleased;
         CrashDetection.OnCrash += CarCrashed;
+        FixPosition.OnPositionFix += CarPosFixed;
     }
 
 
@@ -40,10 +37,11 @@ public class Player : MonoBehaviour
         InputManager.OnFingerDown -= FingerDown;
         InputManager.OnFingerUp -= FingerUp;
         SearchPlayerInDriftArea.OnPlayerEnterDriftArea -= PlayerInDriftArea;
-        SearchPlayerInDriftArea.OnPlayerExitDriftArea -= PlayerOutDriftArea;
+        PlayerExitDriftArea.OnPlayerExitDriftArea -= PlayerOutDriftArea;
         ConnectToNode.OnHookAttached -= HookAttached;
         Drift.OnHookReleased -= HookReleased;
         CrashDetection.OnCrash -= CarCrashed;
+        FixPosition.OnPositionFix -= CarPosFixed;
     }
 
 
@@ -55,25 +53,22 @@ public class Player : MonoBehaviour
 
         slingLine = GetComponent<LineRenderer>();
         connectibleNode = gameObject.GetComponentInChildren<SearchNode>();
-        playerRb = GetComponent<Rigidbody2D>();
-        //detectArea = this.GetComponentInChildren<CircleCollider2D>();
-        //detectArea.radius = connectableCircleRadius;
-        //driftArea = this.GetComponentInChildren<CircleCollider2D>();
         _stateMachine = new StateMachine();
 
         var start = new Start();
         var moveTowards = new MoveTowards(this);
         var connectToNode = new ConnectToNode(this, connectibleNode, slingLine);
-        var drift = new Drift(this, connectibleNode, slingLine, driftSpeed); //add particles
+        var drift = new Drift(this, connectibleNode, slingLine); //add particles
+        var fixPosition = new FixPosition(this, connectibleNode);
         var gameOver = new GameOver();
 
         At(start, moveTowards, ScreenTap());
         At(moveTowards, connectToNode, CanConnectToNode());
         At(connectToNode, drift, CanDrift());
-        At(drift, moveTowards, ReleasedFinger());
-
+        At(drift, fixPosition, OutOfDriftAreaAndReleasedFinger());
+        At(drift, moveTowards, InDriftAreaAndReleasedFinger());
+        At(fixPosition, moveTowards, PositionFixed());
         _stateMachine.AddAnyTransition(gameOver, Crashed());
-        //At(gameOver, start, ReplayPressed());
 
         _stateMachine.SetState(start);
 
@@ -81,9 +76,10 @@ public class Player : MonoBehaviour
         Func<bool> ScreenTap() => () => isFingerDown;
         Func<bool> CanConnectToNode() => () => isFingerDown && connectibleNode.NodeFound;
         Func<bool> CanDrift() => () => isFingerDown && isPlayerInDriftArea && isHookAttached;
-        Func<bool> ReleasedFinger() => () => !isFingerDown;
+        Func<bool> OutOfDriftAreaAndReleasedFinger() => () => !isFingerDown && !isPlayerInDriftArea;
+        Func<bool> PositionFixed() => () => isPosFixed;
+        Func<bool> InDriftAreaAndReleasedFinger() => () => !isFingerDown && isPlayerInDriftArea;
         Func<bool> Crashed() => () => isCollidedSomewhere;
-        //Func<bool> ReplayPressed() => () => pressedReplayButton;
 
     }
 
@@ -99,6 +95,7 @@ public class Player : MonoBehaviour
 
     private void FingerDown()
     {
+        Debug.Log("barnahýmý býraktým");
         isFingerDown = true;
     }
 
@@ -113,22 +110,29 @@ public class Player : MonoBehaviour
 
     private void PlayerOutDriftArea()
     {
+        Debug.Log("çýktým");
         isPlayerInDriftArea = false;
     }
 
     private void HookAttached()
     {
         isHookAttached = true;
-        Debug.Log(isFingerDown + " " + isPlayerInDriftArea + " " + isHookAttached);
     }
 
-    private void HookReleased()
+    private void HookReleased(Node activeNode)
     {
         isHookAttached = false;
+        isPosFixed = false;
+        connectibleNode.ActiveNode = activeNode;
     }
 
     private void CarCrashed()
     {
         isCollidedSomewhere = true;
+    }
+
+    private void CarPosFixed()
+    {
+        isPosFixed = true;
     }
 }

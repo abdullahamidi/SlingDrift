@@ -10,8 +10,7 @@ public class CrashDetection : MonoBehaviour
     {
         if (collision.GetComponent<Player>())
         {
-            if (OnCrash != null)
-                OnCrash();
+            OnCrash?.Invoke();
         }
     }
 }
