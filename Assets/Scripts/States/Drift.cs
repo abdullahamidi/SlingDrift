@@ -55,7 +55,7 @@ public class Drift : IState
     {
         _skidmarkLeft.emitting = false;
         _skidmarkRight.emitting = false;
-        //will not work properly
+
         while (hookPos != _player.transform.position)
         {
             hookPos = Vector3.MoveTowards(hookPos, _player.transform.position, Time.deltaTime * hookSpeed);
@@ -67,7 +67,6 @@ public class Drift : IState
 
     public void Tick()
     {
-        //tekrar bak
         Vector3 targetDir = _connectedNode.transform.position - _player.transform.position;
         var carRotation = Quaternion.AngleAxis(angleBetweenCarAndHook * -moveDir, Vector3.forward);
         targetDir = carRotation * targetDir;
