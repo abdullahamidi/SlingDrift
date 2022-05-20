@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     public float Speed;
     [SerializeField]
     private float connectableCircleRadius;
+    [SerializeField]
+    private TrailRenderer skidmarkLeft;
+    [SerializeField]
+    private TrailRenderer skidmarkRight;
     private StateMachine _stateMachine;
     private CircleCollider2D detectArea;
     private LineRenderer slingLine;
@@ -30,8 +34,6 @@ public class Player : MonoBehaviour
         FixPosition.OnPositionFix += CarPosFixed;
     }
 
-
-
     private void OnDisable()
     {
         InputManager.OnFingerDown -= FingerDown;
@@ -44,21 +46,21 @@ public class Player : MonoBehaviour
         FixPosition.OnPositionFix -= CarPosFixed;
     }
 
-
-
     private void Awake()
     {
         detectArea = GetComponentInChildren<CircleCollider2D>();
         detectArea.radius = connectableCircleRadius;
 
         slingLine = GetComponent<LineRenderer>();
+        skidmarkLeft.emitting = false;
+        skidmarkRight.emitting = false;
         connectibleNode = gameObject.GetComponentInChildren<SearchNode>();
         _stateMachine = new StateMachine();
 
         var start = new StartState();
         var moveTowards = new MoveTowards(this);
         var connectToNode = new ConnectToNode(this, connectibleNode, slingLine);
-        var drift = new Drift(this, connectibleNode, slingLine); //add particles
+        var drift = new Drift(this, connectibleNode, slingLine, skidmarkLeft, skidmarkRight); //add particles
         var fixPosition = new FixPosition(this, connectibleNode);
         var gameOver = new GameOver();
 

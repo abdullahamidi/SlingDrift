@@ -15,6 +15,8 @@ public class Drift : IState
     private SearchNode _nodeSearcher;
     private Node _connectedNode;
     private LineRenderer _slingLine;
+    TrailRenderer _skidmarkLeft;
+    TrailRenderer _skidmarkRight;
     private float driftCircleRadius = 0f;
     private Vector3 hookPos;
     private float hookSpeed = 15f;
@@ -23,11 +25,13 @@ public class Drift : IState
     private float angleBetweenCarAndHook = 45;
 
 
-    public Drift(Player player, SearchNode nodeSearcher, LineRenderer slingLine)
+    public Drift(Player player, SearchNode nodeSearcher, LineRenderer slingLine, TrailRenderer skidmarkLeft, TrailRenderer skidmarkRight)
     {
         _player = player;
         _nodeSearcher = nodeSearcher;
         _slingLine = slingLine;
+        _skidmarkLeft = skidmarkLeft;
+        _skidmarkRight = skidmarkRight;
     }
 
     public void FixedTick()
@@ -36,6 +40,8 @@ public class Drift : IState
 
     public void OnEnter()
     {
+        _skidmarkLeft.emitting = true;
+        _skidmarkRight.emitting = true;
         _connectedNode = _nodeSearcher.ActiveNode;
         origin = _connectedNode.transform.position;
         Vector3 playerPositionForNode = _player.transform.InverseTransformPoint(_connectedNode.transform.position);
@@ -47,6 +53,8 @@ public class Drift : IState
 
     public void OnExit()
     {
+        _skidmarkLeft.emitting = false;
+        _skidmarkRight.emitting = false;
         //will not work properly
         while (hookPos != _player.transform.position)
         {
