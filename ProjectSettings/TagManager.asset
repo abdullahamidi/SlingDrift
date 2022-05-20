@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Node
+    uniqueID: 152671637
+    locked: 0
   - name: Skidmark
     uniqueID: 4067600787
     locked: 0
