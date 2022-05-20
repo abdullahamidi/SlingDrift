@@ -42,7 +42,7 @@ public class Drift : IState
         moveDir = playerPositionForNode.x < 0 ?
             1f : -1f;
         driftCircleRadius = Vector3.Distance(_player.transform.position, _connectedNode.transform.position);
-        _player.Speed += 0.1f;
+        _player.Speed += 0.05f;
     }
 
     public void OnExit()

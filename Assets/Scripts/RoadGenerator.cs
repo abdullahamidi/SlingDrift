@@ -145,12 +145,12 @@ public class RoadGenerator : MonoBehaviour
     private void OnGameStarted()
     {
         StartCoroutine(CreateRoadByTime(1));
-        StartCoroutine(RemoveRoadByTime(3));
+        StartCoroutine(RemoveRoadByTime(5));
     }
 
     private void OnGameStopped()
     {
         StopCoroutine(CreateRoadByTime(1));
-        StopCoroutine(RemoveRoadByTime(3));
+        StopCoroutine(RemoveRoadByTime(5));
     }
 }

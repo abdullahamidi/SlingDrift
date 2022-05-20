@@ -6,11 +6,13 @@ using UnityEngine;
 public class PlayerExitDriftArea : MonoBehaviour
 {
     public static Action OnPlayerExitDriftArea;
-    private void OnTriggerExit2D(Collider2D collision)
+    public static Action OnScore;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>())
         {
             OnPlayerExitDriftArea?.Invoke();
+            OnScore?.Invoke();
             if (transform.parent.parent.GetComponentInChildren<Node>()) transform.parent.parent.GetComponentInChildren<Node>().IsPassed = true;
         }
     }
